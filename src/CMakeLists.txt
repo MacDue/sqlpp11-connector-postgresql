@@ -77,7 +77,7 @@ endif()
 
 target_compile_options(sqlpp11-connector-postgresql-dynamic INTERFACE -DSQLPP_DYNAMIC_LOADING)
 target_compile_options(sqlpp11-connector-postgresql-dynamic PRIVATE -DBUILDING_DLL -DSQLPP_DYNAMIC_LOADING -DSQLPP_DYNAMIC_LOADING_FILENAME=${POSTGRESQL_LIB_FILE})
-set_target_properties(sleepy-discord PROPERTIES CXX_STANDARD 20)
+set_target_properties(sqlpp11-connector-postgresql PROPERTIES CXX_STANDARD 20)
 target_compile_features(sqlpp11-connector-postgresql PRIVATE cxx_std_20)
 target_compile_features(sqlpp11-connector-postgresql-dynamic PRIVATE cxx_std_20)
 
