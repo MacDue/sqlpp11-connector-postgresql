@@ -107,6 +107,10 @@ namespace sqlpp
       return *this;
     }
 
+    bool connection::is_valid() {
+      return PQstatus(this->_handle->native()) == CONNECTION_OK;
+    }
+
     void connection::connectUsing(const std::shared_ptr<connection_config>& config) noexcept(false)
     {
       this->_handle.reset(new detail::connection_handle(config));

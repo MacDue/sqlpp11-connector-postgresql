@@ -154,6 +154,8 @@ namespace sqlpp
       connection& operator=(const connection&) = delete;
       connection& operator=(connection&&);
 
+      bool is_valid();
+
       // creates a connection handle and connects to database
       void connectUsing(const std::shared_ptr<connection_config>& config) noexcept(false);
 
