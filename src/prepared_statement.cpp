@@ -109,6 +109,21 @@ namespace sqlpp
       }
     }
 
+    void prepared_statement_t::_bind_unsigned_integral_parameter(size_t index, const uint64_t* value, bool is_null)
+    {
+      if (_handle->debug())
+      {
+        std::cerr << "PostgreSQL debug: binding unsigned integral parameter " << *value << " at index: " << index << ", being "
+                  << (is_null ? "" : "not ") << "null" << std::endl;
+      }
+
+      _handle->nullValues[index] = is_null;
+      if (!is_null)
+      {
+        _handle->paramValues[index] = std::to_string(*value);
+      }
+    }
+
     void prepared_statement_t::_bind_text_parameter(size_t index, const std::string* value, bool is_null)
     {
       if (_handle->debug())
