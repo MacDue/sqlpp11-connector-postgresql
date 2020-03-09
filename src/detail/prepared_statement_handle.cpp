@@ -40,6 +40,12 @@ namespace sqlpp
         }
       }
 
+      bool statement_handle_t::is_valid_for_connection(
+        sqlpp::postgresql::connection& conn
+      ) {
+        return conn.uses_handle(connection);
+      }
+
       bool statement_handle_t::debug() const
       {
         return connection.config->debug;

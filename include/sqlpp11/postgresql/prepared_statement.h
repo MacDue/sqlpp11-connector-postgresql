@@ -61,6 +61,9 @@ namespace sqlpp
       prepared_statement_t& operator=(prepared_statement_t&&) = default;
       ~prepared_statement_t() = default;
 
+      bool is_valid_for_connection(sqlpp::postgresql::connection& conn);
+      void invalidate_connection();
+
       bool operator==(const prepared_statement_t& rhs)
       {
         return (this->_handle == rhs._handle);

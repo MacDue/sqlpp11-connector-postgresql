@@ -156,6 +156,8 @@ namespace sqlpp
 
       bool is_valid();
 
+      bool uses_handle(detail::connection_handle const & handle);
+
       // creates a connection handle and connects to database
       void connectUsing(const std::shared_ptr<connection_config>& config) noexcept(false);
 

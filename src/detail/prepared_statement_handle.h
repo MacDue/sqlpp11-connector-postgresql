@@ -36,6 +36,7 @@
 #include <libpq-fe.h>
 #include <sqlpp11/postgresql/result.h>
 #include <sqlpp11/postgresql/visibility.h>
+#include <sqlpp11/postgresql/connection.h>
 
 #include "connection_handle.h"
 
@@ -67,6 +68,12 @@ namespace sqlpp
         statement_handle_t(statement_handle_t&&) = default;
         statement_handle_t& operator=(const statement_handle_t&) = delete;
         statement_handle_t& operator=(statement_handle_t&&) = default;
+
+        bool is_valid_for_connection(sqlpp::postgresql::connection & conn);
+
+        void invalidate_connection() {
+          this->valid = false;
+        }
 
         virtual ~statement_handle_t();
         bool operator!() const;

@@ -162,6 +162,14 @@ namespace sqlpp
       }
     }
 
+    bool prepared_statement_t::is_valid_for_connection(sqlpp::postgresql::connection& conn) {
+      return _handle->is_valid_for_connection(conn);
+    }
+
+    void prepared_statement_t::invalidate_connection() {
+      _handle->invalidate_connection();
+    }
+
     namespace {
 
       long get_timezone_offset()
