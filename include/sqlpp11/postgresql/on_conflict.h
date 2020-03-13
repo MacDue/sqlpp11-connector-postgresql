@@ -166,8 +166,9 @@ namespace sqlpp
             -> _new_statement_t<check_on_conflict_do_update_static_set_t<Assignments...>,
                                 on_conflict_do_update_t<void, ConflictTarget, Assignments...>>
         {
-          static_assert(is_column_t<ConflictTarget>::value,
-                        "conflict_target specification is required with do_update(...)");
+          // A again conflict targets are not single columns
+          // static_assert(is_column_t<ConflictTarget>::value,
+          //               "conflict_target specification is required with do_update(...)");
           return {static_cast<const derived_statement_t<Policies>&>(*this),
                   on_conflict_do_update_data_t<void, ConflictTarget, Assignments...>(on_conflict._data,
                                                                                      std::make_tuple(assignments...))};
@@ -250,8 +251,9 @@ namespace sqlpp
         template <typename ConflictTarget>
         auto on_conflict(ConflictTarget column) const -> _new_statement_t<consistent_t, on_conflict_t<ConflictTarget>>
         {
-          static_assert(is_column_t<ConflictTarget>::value,
-                        "only a column is supported as conflict_target specification");
+          // This static assert is a complete lie!
+          // static_assert(is_column_t<ConflictTarget>::value,
+          //               "only a column is supported as conflict_target specification");
           return {static_cast<const derived_statement_t<Policies>&>(*this), on_conflict_data_t<ConflictTarget>{column}};
         }
       };
